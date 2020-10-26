@@ -1,14 +1,14 @@
 <template>
   <div class="side">
-    <router-link to v-b-toggle.sidebar-1 class="side-cart">
+    <div v-b-modal.sidebar-1 class="side-cart">
       <img src="../assets/icon/shopping_cart-black-48dp.svg" alt />
-    </router-link>
+    </div>
 
     <router-link to="/">
       <img src="../assets/img/fork.png" alt />
     </router-link>
 
-    <router-link to="/history">
+    <router-link to="/dashboard">
       <img src="../assets/img/clipboard.png" alt />
     </router-link>
 
@@ -16,18 +16,15 @@
       <img src="../assets/img/add.png" alt />
     </router-link>
 
-    <!-- <router-link  @click="onLogout()">
-      <b-icon icon="door-closed" class="border rounded text-center logout" scale="3" ></b-icon>
-    </router-link> -->
     <a style="cursor: pointer" @click="onLogout()">
-    <b-icon icon="door-closed" class="border rounded text-center logout" scale="3" ></b-icon>
+     <img src="../assets/img/logout.png" alt="" style="height: 50px;">
     </a>
 
-    <b-sidebar id="sidebar-1" width="100%" shadow>
+    <b-modal id="sidebar-1" width="100%" shadow>
       <div class="px-3 py-2">
         <Cart :newcart="newcart"/>
       </div>
-    </b-sidebar>
+    </b-modal>
   </div>
 </template>
 
@@ -37,19 +34,17 @@ import Cart from '@/components/Cart.vue'
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'Sidebar',
+  name: 'Sidemenu',
   props: ['newcart'],
   components: {
     Cart
   },
   methods: {
     ...mapActions({
-      actionLogout: 'auth/logout'
+      actionLogout: 'auth/onLogout'
     }),
     onLogout () {
       this.actionLogout().then(() => {
-        // this.$route.push('/login')
-        alert('Berhasil Logout')
         window.location = '/login'
       })
     }

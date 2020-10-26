@@ -14,21 +14,9 @@
           </div>
           <br />
           <br />
-          <div class="row">
-            <div class="col-6 mb-3 text-left">Coffe Latte 1x</div>
-            <div class="col-6 text-right">Rp. 15.000</div>
-          </div>
-          <div class="row">
-            <div class="col-6 mb-3 text-left">Black Forest 1x</div>
-            <div class="col-6 text-right">Rp. 30.000</div>
-          </div>
-          <div class="row">
-            <div class="col-6 mb-3 text-left">Salmon Truffle Teriyaki 1x</div>
-            <div class="col-6 text-right">Rp. 60.000</div>
-          </div>
-          <div class="row">
-            <div class="col-6 mb-4 text-left">Ppn 10 %</div>
-            <div class="col-6 text-right">Rp. 10.500</div>
+          <div class="row" v-for="(item, index) in newcart" :key="index">
+            <div class="col-6 mb-3 text-left">{{item.name}}</div>
+            <div class="col-6 text-right">{{item.price}}</div>
           </div>
           <div class="row">
             <div class="col-6"></div>
@@ -50,3 +38,9 @@
   </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ['newcart']
+}
+</script>

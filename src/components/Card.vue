@@ -11,15 +11,15 @@
   </div>
   <div>
     <div class="dropdown dropleft text-right mt-3">
-  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button type="button" class="btn blue-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
      Sort by
   </button>
   <div class="dropdown-menu">
       <a class="dropdown-item" @click="sortLatest()" style="cursor: pointer;">Latest Products</a>
       <a class="dropdown-item" @click="sortNameA()" style="cursor: pointer;">Product Name A-Z</a>
       <a class="dropdown-item" @click="sortNameZ()" style="cursor: pointer;">Product Name Z-A</a>
-      <a class="dropdown-item" @click="sortPriceLow()" style="cursor: pointer;">Price Lowest</a>
-      <a class="dropdown-item" @click="sortPriceHigh()" style="cursor: pointer;">Price Highest</a>
+      <a class="dropdown-item" @click="sortPriceLow()" style="cursor: pointer;">Lowest Price</a>
+      <a class="dropdown-item" @click="sortPriceHigh()" style="cursor: pointer;">Highest Price</a>
   </div>
 </div>
   </div>
@@ -35,7 +35,7 @@
        <div v-if="Products.data.length === 0" style="height: 45vw">
           <div class="row">
             <div class="col-lg-12">
-               <img src="../assets/img/notfound.jpg" class="img-fluid" alt="">
+               <h1 class="text-center font-weight-bold m-auto">Data not found</h1>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
                     />
                   </div>
                   <div class="row">
-                    <div class="col-lg-8 col-md-8 col-8 text-left">
+                    <div class="col-lg-6 col-md-6 col-6 text-left">
                       <div class="card-bottom">
                         <p style="margin-bottom: -1px; text-align: left">{{ item.name }}</p>
                         <p style="text-align: left">
@@ -58,17 +58,20 @@
                         </p>
                       </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-4 text-right">
-                      <div>
-                        <b-dropdown  id="dropdown-dropleft" dropleft size="md" variant="black" toggle-class="text-decoration-none" no-caret>
+                    <div class="col-lg-6 col-md-6 col-6 text-right row">
+                      <div class="row ml-auto d-none d-sm-block">
+                          <b-button class="mr-1 h-75 blue-btn" data-toggle="modal" @click="$emit('addtocart',item.id,index)" style="cursor: pointer;"><b-icon-cart3 class="text-white"></b-icon-cart3></b-button>
+                          <b-button class="mr-1 h-75 pink-btn" data-toggle="modal" data-target="#edit-modal" @click="$emit('update',item.id,index)" style="cursor: pointer;"><b-icon-pencil class="text-white"></b-icon-pencil></b-button>
+                          <b-button class="mr-1 h-75 btn-danger" @click="onDelete(item.id)" style="cursor: pointer;"><b-icon-trash class="text-white"></b-icon-trash></b-button>
+                      </div>
+                      <b-dropdown class="d-block d-sm-none ml-auto" id="dropdown-dropleft" dropleft size="md" variant="black" toggle-class="text-decoration-none" no-caret>
                           <template v-slot:button-content>
-                            <b-icon icon="three-dots" variant="black"></b-icon>
+                            <b-icon-box-arrow-left variant="black"></b-icon-box-arrow-left>
                           </template>
                            <b-dropdown-item data-toggle="modal" @click="$emit('addtocart',item.id,index)" style="cursor: pointer;">Add To Cart</b-dropdown-item>
                           <b-dropdown-item data-toggle="modal" data-target="#edit-modal" @click="$emit('update',item.id,index)" style="cursor: pointer;">Edit</b-dropdown-item>
                           <b-dropdown-item @click="onDelete(item.id)" style="cursor: pointer;">Delete</b-dropdown-item>
                         </b-dropdown>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -127,5 +130,13 @@ export default {
 <style scoped>
 .main-card {
   margin-top: 20px;
+}
+.blue-btn {
+  background: #57CAD5;
+  color: #ffffff;
+}
+.pink-btn{
+  background: #f24f8a;
+  color: #ffffff;
 }
 </style>

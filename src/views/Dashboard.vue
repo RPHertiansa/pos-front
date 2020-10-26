@@ -2,10 +2,10 @@
   <div>
     <div class="row">
       <div class="col-lg-12 text-center">
-        <Header type="dashboard" class="shadow head"></Header>
+        <Header type="dashboard" class="mx-auto shadow head"></Header>
       </div>
       <div class="col-lg-1 shadow text-center w-25">
-        <Sidebar/>
+        <Sidemenu/>
       </div>
       <div class="col-lg-11">
         <div class="row col-md-12 mx-auto mt-4" style="font-weight: bold;">
@@ -40,7 +40,7 @@
 
 <script>
 import Header from '../components/Header'
-import Sidebar from '../components/Sidebar'
+import Sidemenu from '../components/Sidemenu'
 import Chart from '../components/Chart'
 import Table from '../components/Table'
 
@@ -54,7 +54,7 @@ export default {
   },
   components: {
     Header,
-    Sidebar,
+    Sidemenu,
     Chart,
     Table
   }

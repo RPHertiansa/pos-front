@@ -18,10 +18,7 @@ export default {
 </script>
 <style>
 .head{
-  text-align: center !important;
-  align-content: center !important;
-  align-items: center !important;
-  align-self: center !important;
-  font-weight: bold !important;
+  margin: auto;
+  font-weight: bold;
 }
 </style>

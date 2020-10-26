@@ -61,7 +61,7 @@
                     <img src="../assets/img/menu (1).png" alt />
                   </div>
                   <div class="col-lg-10 col-md-10 col-8">
-                    <h3 class="font-weight-bold">Food Items</h3>
+                    <Header class="head mx-auto" type="home"/>
                   </div>
                   <div class="col-lg-1 col-md-1 col-2">
                     <a
@@ -76,7 +76,7 @@
                 </div>
                 <div class="row">
                   <div class="col-lg-1 col-md-12 col-12 sidebar">
-                    <Sidebar :newcart="newCart"/>
+                    <Sidemenu :newcart="newCart"/>
                   </div>
                   <div class="col-lg-11 content">
                     <Card @update="updateData" @addtocart="addToCart"/>
@@ -98,23 +98,23 @@
 <script>
 
 import { mapGetters, mapActions } from 'vuex'
-
-import Sidebar from '@/components/Sidebar.vue'
-import Card from '@/components/Card.vue'
-import Cart from '@/components/Cart.vue'
-import ModalInsert from '@/components/ModalInsert.vue'
-import ModalCheckout from '@/components/ModalCheckout.vue'
+import Header from '../components/Header.vue'
+import Sidemenu from '../components/Sidemenu.vue'
+import Card from '../components/Card.vue'
+import Cart from '../components/Cart.vue'
+import ModalInsert from '../components/ModalInsert.vue'
+import ModalCheckout from '../components/ModalCheckout.vue'
 import Swal from 'sweetalert2'
 
 export default {
   name: 'Home',
   components: {
-    Sidebar,
+    Header,
+    Sidemenu,
     Card,
     Cart,
     ModalInsert,
     ModalCheckout
-    // ModalEdit
   },
   data () {
     return {

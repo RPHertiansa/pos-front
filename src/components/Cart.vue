@@ -2,7 +2,7 @@
   <div>
     <div class="row navbar-cart">
       <div class="col-lg-12">
-        <h3 class="font-weight-bold">Cart</h3>
+        <h3 class="font-weight-bold">Cart <span class="cart-count">{{newcart.length}}</span></h3>
       </div>
     </div>
     <div v-if="newcart.length === 0">
@@ -29,7 +29,7 @@
                       <strong>{{item.name}}</strong>
                     </p>
                   </div>
-                  <div class="col-md-6 col-6">
+                  <div class="col-md-5 col-5">
                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                       <button
                         type="button"
@@ -44,9 +44,9 @@
                       >+</button>
                     </div>
                   </div>
-                  <div class="col-md-6 col-6">
+                  <div class="col-md-7 col-7">
                     <p>
-                      <strong>Rp. {{item.price}}</strong>
+                      <strong>Rp. {{ formatPrice(item.price * item.qty) }}</strong>
                     </p>
                   </div>
                 </div>
@@ -63,7 +63,7 @@
               <strong>Total :</strong>
             </div>
             <div class="col-md-6 text-right">
-              <strong>Rp. 105.000*</strong>
+              <strong>Rp {{formatPrice(total)}}</strong>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@
             <strong>Checkout</strong>
           </button>
 
-          <button class="btn btn-block btn-cancel text-center">
+          <button @click="cancel" class="btn btn-block btn-cancel text-center">
             <strong>Cancel</strong>
           </button>
         </div>
@@ -93,12 +93,27 @@
 
 <script>
 import { BASE_URL } from '../helpers/env'
+import currency from '../mixins/currency'
 export default {
   name: 'Cart',
   props: ['newcart'],
+  mixins: [currency],
   data () {
     return {
-      URL: BASE_URL
+      URL: BASE_URL,
+      total: null
+    }
+  },
+  watch: {
+    newcart (newcart) {
+      this.total = newcart.reduce((item, data) => {
+        return item + (data.price * data.qty)
+      }, 0)
+    }
+  },
+  methods: {
+    cancel () {
+      this.newcart = []
     }
   }
 }
@@ -129,5 +144,11 @@ export default {
 .btn-cancel:hover {
   background: #f24f8bb6;
   color: #ffffff;
+}
+.cart-count{
+  background: #4accd8;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 50%;
 }
 </style>
